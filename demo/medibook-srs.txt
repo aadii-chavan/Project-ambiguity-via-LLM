@@ -1,0 +1,19 @@
+The system should respond quickly when patients search for available doctors.
+The system shall support many concurrent users.
+Appointment reminders shall be sent before the visit.
+The app shall support popular payment methods such as credit cards, UPI, etc.
+The receptionist shall review the doctor's schedule before she confirms it with the patient.
+The system shall allow editing of appointments by patients with insurance.
+If the patient is a minor or a senior and has a referral, the system shall waive the registration fee.
+Patient records shall be retained according to the hospital policy.
+The user interface shall be intuitive for elderly users.
+The system shall release the slot when a booking is cancelled.
+Duplicate bookings shall be rejected.
+The system shall be available most of the time.
+The system shall notify patients by email, SMS, and so on.
+The system shall lock a user account after 5 consecutive failed login attempts.
+The system shall send a confirmation email to the patient within 60 seconds of a successful booking.
+The system shall display the consultation fee in INR including 18% GST on the booking page.
+The system shall allow a patient to cancel an appointment up to 2 hours before its start time.
+The system shall require two-factor authentication for all administrator accounts.
+The search page shall return results within 2 seconds for at least 95% of requests.

@@ -61,6 +61,30 @@ Without a key the app still runs in an **offline keyword-rules mode** (detection
 
 Ports can be changed with `BACKEND_PORT` / `FRONTEND_PORT`. API docs: <http://localhost:8000/docs>.
 
+## Running on Windows
+
+Needs **Python 3.11+** (tested on 3.14) and **Node.js 20.19+** (tested on 24) — no conda required. Use PowerShell from the project folder:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run.ps1 setup    # creates .venv, installs backend + frontend packages, creates backend\.env
+notepad backend\.env                                        # set GEMINI_API_KEY=your-key
+powershell -ExecutionPolicy Bypass -File .\run.ps1 start    # builds the UI, serves everything on http://localhost:8000
+```
+
+`run.ps1 dev` runs backend + hot-reload frontend (http://localhost:5173), and `run.ps1 test` runs the unit tests.
+The browser (e2e) tests are macOS/Linux-only for now. Manual equivalent if the script gives you trouble:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -r backend\requirements.txt
+cd frontend; npm ci; npm run build; cd ..
+copy backend\.env.example backend\.env
+cd backend; ..\.venv\Scripts\python -m uvicorn app.main:app --port 8000
+```
+
+`backend\.env` and the database are not in git, so a fresh clone starts empty and needs your own API key. A demo document and
+presenter notes are in [`demo/`](demo/PRESENTER_NOTES.md).
+
 ## Architecture
 
 ```mermaid
