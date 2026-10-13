@@ -1,0 +1,100 @@
+{"id": "A01", "text": "The system should respond quickly to user queries.", "ambiguous": true, "types": ["vague_term", "non_testable"]}
+{"id": "A02", "text": "The user interface shall be user-friendly.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A03", "text": "The application shall load pages fast on mobile devices.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A04", "text": "The system shall provide adequate security for stored payment data.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A05", "text": "Search results shall be returned in a reasonable amount of time.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A06", "text": "The software shall be easy to maintain.", "ambiguous": true, "types": ["vague_term", "non_testable"]}
+{"id": "A07", "text": "The checkout flow shall be seamless for returning customers.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A08", "text": "The system shall handle peak load efficiently.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A09", "text": "Error messages shall be clear and helpful.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A10", "text": "The dashboard shall display data in a timely manner.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A11", "text": "The system should be robust.", "ambiguous": true, "types": ["non_testable", "vague_term"]}
+{"id": "A12", "text": "The reporting module must be reliable.", "ambiguous": true, "types": ["vague_term"]}
+{"id": "A13", "text": "The application should support offline mode.", "ambiguous": true, "types": ["non_testable"]}
+{"id": "A14", "text": "The system might send an email notification when an order ships.", "ambiguous": true, "types": ["non_testable"]}
+{"id": "A15", "text": "Reports shall be generated for all borrowed books.", "ambiguous": true, "types": ["missing_actor"]}
+{"id": "A16", "text": "Passwords must be encrypted.", "ambiguous": true, "types": ["missing_actor"]}
+{"id": "A17", "text": "Invalid orders shall be rejected.", "ambiguous": true, "types": ["missing_actor"]}
+{"id": "A18", "text": "Audit logs shall be retained for seven years.", "ambiguous": true, "types": ["missing_actor"]}
+{"id": "A19", "text": "The data will be validated before submission.", "ambiguous": true, "types": ["missing_actor"]}
+{"id": "A20", "text": "Notifications shall be sent when stock runs low.", "ambiguous": true, "types": ["missing_actor", "undefined_term"]}
+{"id": "A21", "text": "The system shall support many concurrent users.", "ambiguous": true, "types": ["unbounded_quantifier"]}
+{"id": "A22", "text": "The system shall store several years of transaction history.", "ambiguous": true, "types": ["unbounded_quantifier"]}
+{"id": "A23", "text": "Users can upload multiple files at once.", "ambiguous": true, "types": ["unbounded_quantifier"]}
+{"id": "A24", "text": "The platform shall support various payment methods.", "ambiguous": true, "types": ["unbounded_quantifier", "open_ended"]}
+{"id": "A25", "text": "The system shall respond to most requests within 2 seconds.", "ambiguous": true, "types": ["unbounded_quantifier"]}
+{"id": "A26", "text": "The librarian shall be able to export data in formats such as PDF, etc.", "ambiguous": true, "types": ["open_ended"]}
+{"id": "A27", "text": "The system shall send alerts via email, SMS, and so on.", "ambiguous": true, "types": ["open_ended"]}
+{"id": "A28", "text": "Patient records shall be updated as needed.", "ambiguous": true, "types": ["open_ended", "missing_actor"]}
+{"id": "A29", "text": "The app shall support browsers including Chrome, Firefox, etc.", "ambiguous": true, "types": ["open_ended"]}
+{"id": "A30", "text": "The admin shall configure permissions as appropriate.", "ambiguous": true, "types": ["open_ended", "vague_term"]}
+{"id": "A31", "text": "The system shall send the invoice to the customer and it shall log the transaction.", "ambiguous": true, "types": ["referential"]}
+{"id": "A32", "text": "When the user uploads a document to the folder, it shall be scanned for viruses.", "ambiguous": true, "types": ["referential", "missing_actor"]}
+{"id": "A33", "text": "The manager shall review the report from the analyst before he submits it to the client.", "ambiguous": true, "types": ["referential"]}
+{"id": "A34", "text": "The module reads data from the sensor and sends it to the controller, which then updates it.", "ambiguous": true, "types": ["referential"]}
+{"id": "A35", "text": "The server shall notify the client when it is overloaded.", "ambiguous": true, "types": ["referential"]}
+{"id": "A36", "text": "The system shall bank the daily transactions at midnight.", "ambiguous": true, "types": ["lexical"]}
+{"id": "A37", "text": "The application shall refresh the chart every minute.", "ambiguous": true, "types": ["lexical"]}
+{"id": "A38", "text": "The portal shall register new members.", "ambiguous": true, "types": ["lexical"]}
+{"id": "A39", "text": "Admins and users with access can edit the document.", "ambiguous": true, "types": ["syntactic"]}
+{"id": "A40", "text": "The system shall display the names of all employees and managers who work in Berlin.", "ambiguous": true, "types": ["syntactic"]}
+{"id": "A41", "text": "The system shall allow editing of orders by customers with discounts.", "ambiguous": true, "types": ["syntactic"]}
+{"id": "A42", "text": "The report shall list customers who bought products from Europe or Asia and Africa.", "ambiguous": true, "types": ["syntactic", "conflicting_condition"]}
+{"id": "A43", "text": "If the user is an admin or a manager and has approval, the system shall allow deletion.", "ambiguous": true, "types": ["conflicting_condition"]}
+{"id": "A44", "text": "The system shall refund the customer if the item is damaged or late and the customer has a receipt.", "ambiguous": true, "types": ["conflicting_condition"]}
+{"id": "A45", "text": "The system shall send a reminder to users who have not logged in, unless they opted out and have a premium plan.", "ambiguous": true, "types": ["conflicting_condition"]}
+{"id": "A46", "text": "The discount shall apply when the order total is over $100 and under $50.", "ambiguous": true, "types": ["conflicting_condition"]}
+{"id": "A47", "text": "Data shall be retained according to the SLA.", "ambiguous": true, "types": ["undefined_term", "missing_actor"]}
+{"id": "A48", "text": "The system shall comply with the standard security policy.", "ambiguous": true, "types": ["undefined_term"]}
+{"id": "A49", "text": "Users in the premium tier shall have priority access.", "ambiguous": true, "types": ["undefined_term", "vague_term"]}
+{"id": "A50", "text": "The module shall apply the usual discount rules.", "ambiguous": true, "types": ["undefined_term"]}
+{"id": "C01", "text": "The system shall lock a member account after 5 consecutive failed login attempts.", "ambiguous": false, "types": []}
+{"id": "C02", "text": "The system shall return search results within 2 seconds for at least 95% of queries under a load of 500 concurrent users.", "ambiguous": false, "types": []}
+{"id": "C03", "text": "The system shall encrypt all stored passwords using bcrypt with a cost factor of at least 12.", "ambiguous": false, "types": []}
+{"id": "C04", "text": "The video player shall provide a fast-forward button that skips 10 seconds.", "ambiguous": false, "types": []}
+{"id": "C05", "text": "The mobile application shall run on Android 12 and later.", "ambiguous": false, "types": []}
+{"id": "C06", "text": "The system shall send a confirmation email to the customer within 60 seconds of order placement.", "ambiguous": false, "types": []}
+{"id": "C07", "text": "The administrator shall be able to disable a user account from the user management page.", "ambiguous": false, "types": []}
+{"id": "C08", "text": "The system shall retain audit logs for 7 years.", "ambiguous": false, "types": []}
+{"id": "C09", "text": "The API shall return HTTP status 404 when the requested resource does not exist.", "ambiguous": false, "types": []}
+{"id": "C10", "text": "The system shall display the total price including 20% VAT on the checkout page.", "ambiguous": false, "types": []}
+{"id": "C11", "text": "The database shall be backed up every day at 02:00 UTC.", "ambiguous": false, "types": []}
+{"id": "C12", "text": "Users shall be able to reset their password using a link emailed to their registered address, valid for 30 minutes.", "ambiguous": false, "types": []}
+{"id": "C13", "text": "The system shall support CSV and PDF export of the monthly sales report.", "ambiguous": false, "types": []}
+{"id": "C14", "text": "The login page shall require a username and a password of at least 12 characters.", "ambiguous": false, "types": []}
+{"id": "C15", "text": "The system shall log each failed payment attempt with timestamp, user ID and error code.", "ambiguous": false, "types": []}
+{"id": "C16", "text": "The website shall render correctly in the latest two major versions of Chrome, Firefox and Safari.", "ambiguous": false, "types": []}
+{"id": "C17", "text": "The system shall allow a librarian to renew a loan up to 3 times per book.", "ambiguous": false, "types": []}
+{"id": "C18", "text": "The system shall terminate user sessions after 15 minutes of inactivity.", "ambiguous": false, "types": []}
+{"id": "C19", "text": "The thermostat shall switch on the heater when the room temperature falls below 18 °C.", "ambiguous": false, "types": []}
+{"id": "C20", "text": "The system shall display the error message \"Invalid credentials\" when the login fails.", "ambiguous": false, "types": []}
+{"id": "C21", "text": "The system shall store uploaded files up to 25 MB each.", "ambiguous": false, "types": []}
+{"id": "C22", "text": "The payment module shall process refunds within 5 business days.", "ambiguous": false, "types": []}
+{"id": "C23", "text": "The nurse shall be able to view a patient's allergy list within 2 seconds of opening the record.", "ambiguous": false, "types": []}
+{"id": "C24", "text": "The system shall generate a borrowing report listing every book borrowed during the selected date range.", "ambiguous": false, "types": []}
+{"id": "C25", "text": "The application shall support English, Spanish and German.", "ambiguous": false, "types": []}
+{"id": "C26", "text": "The system shall send an SMS to the driver when the delivery is assigned.", "ambiguous": false, "types": []}
+{"id": "C27", "text": "The system shall prevent the booking of a room already reserved for the same time slot.", "ambiguous": false, "types": []}
+{"id": "C28", "text": "The web server shall handle at least 1,000 requests per second with a CPU utilization below 70%.", "ambiguous": false, "types": []}
+{"id": "C29", "text": "The system shall require two-factor authentication for all administrator accounts.", "ambiguous": false, "types": []}
+{"id": "C30", "text": "The system shall display the stock quantity on the product page and update it within 5 seconds of a change.", "ambiguous": false, "types": []}
+{"id": "C31", "text": "The customer shall be able to cancel an order before it is shipped.", "ambiguous": false, "types": []}
+{"id": "C32", "text": "The system shall use TLS 1.2 or higher for all external connections.", "ambiguous": false, "types": []}
+{"id": "C33", "text": "The mobile app shall request location permission only when the user opens the map screen.", "ambiguous": false, "types": []}
+{"id": "C34", "text": "The system shall assign each new ticket a unique 8-digit identifier.", "ambiguous": false, "types": []}
+{"id": "C35", "text": "The system shall notify the manager by email when an expense above $1,000 is submitted.", "ambiguous": false, "types": []}
+{"id": "C36", "text": "The scheduler shall run the cleanup job every Sunday at 03:00 server time.", "ambiguous": false, "types": []}
+{"id": "C37", "text": "The system shall allow users to filter orders by status, date range and customer name.", "ambiguous": false, "types": []}
+{"id": "C38", "text": "The system shall round all monetary amounts to two decimal places.", "ambiguous": false, "types": []}
+{"id": "C39", "text": "The user shall be able to undo the last 20 actions in the editor.", "ambiguous": false, "types": []}
+{"id": "C40", "text": "The system shall display the user's name in the page header after login.", "ambiguous": false, "types": []}
+{"id": "C41", "text": "The kiosk shall print a receipt within 3 seconds after payment is confirmed.", "ambiguous": false, "types": []}
+{"id": "C42", "text": "The system shall reject any file upload with an extension other than .pdf, .png or .jpg.", "ambiguous": false, "types": []}
+{"id": "C43", "text": "The system shall compute the late fee as $0.50 per day per overdue book, up to a maximum of $10.", "ambiguous": false, "types": []}
+{"id": "C44", "text": "The inventory service shall publish a \"StockLow\" event when quantity falls below the reorder threshold stored for the product.", "ambiguous": false, "types": []}
+{"id": "C45", "text": "The system shall be available 99.9% of the time, measured monthly, excluding scheduled maintenance.", "ambiguous": false, "types": []}
+{"id": "C46", "text": "The patient portal shall display lab results within 1 hour of their release by the laboratory.", "ambiguous": false, "types": []}
+{"id": "C47", "text": "The system shall record the date and time of each login in UTC.", "ambiguous": false, "types": []}
+{"id": "C48", "text": "Admin users shall be able to assign one role to each user account.", "ambiguous": false, "types": []}
+{"id": "C49", "text": "The elevator controller shall open the doors within 2 seconds of reaching the requested floor.", "ambiguous": false, "types": []}
+{"id": "C50", "text": "The system shall display a progress bar during file uploads.", "ambiguous": false, "types": []}

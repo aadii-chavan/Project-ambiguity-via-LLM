@@ -1,0 +1,2974 @@
+{
+  "summary": {
+    "model": "gemini-2.5-flash",
+    "prompt_hash": "6fe4b9b32e",
+    "n": 100,
+    "llm_errors": 0,
+    "baseline": {
+      "binary": {
+        "precision": 0.912,
+        "recall": 0.62,
+        "f1": 0.738,
+        "tp": 31,
+        "fp": 3,
+        "fn": 19,
+        "tn": 47,
+        "accuracy": 0.78
+      },
+      "types": {
+        "precision": 0.85,
+        "recall": 0.557,
+        "f1": 0.673,
+        "tp": 34,
+        "fp": 6,
+        "fn": 27
+      }
+    },
+    "llm": {
+      "binary": {
+        "precision": 0.942,
+        "recall": 0.98,
+        "f1": 0.961,
+        "tp": 49,
+        "fp": 3,
+        "fn": 1,
+        "tn": 47,
+        "accuracy": 0.96
+      },
+      "types": {
+        "precision": 0.855,
+        "recall": 0.77,
+        "f1": 0.81,
+        "tp": 47,
+        "fp": 8,
+        "fn": 14
+      },
+      "per_type": {
+        "conflicting_condition": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75,
+          "tp": 3,
+          "fp": 0,
+          "fn": 2
+        },
+        "lexical": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "missing_actor": {
+          "precision": 0.714,
+          "recall": 0.556,
+          "f1": 0.625,
+          "tp": 5,
+          "fp": 2,
+          "fn": 4
+        },
+        "non_testable": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.889,
+          "tp": 4,
+          "fp": 0,
+          "fn": 1
+        },
+        "open_ended": {
+          "precision": 1.0,
+          "recall": 0.833,
+          "f1": 0.909,
+          "tp": 5,
+          "fp": 0,
+          "fn": 1
+        },
+        "referential": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        },
+        "syntactic": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "tp": 3,
+          "fp": 1,
+          "fn": 1
+        },
+        "unbounded_quantifier": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.889,
+          "tp": 4,
+          "fp": 0,
+          "fn": 1
+        },
+        "undefined_term": {
+          "precision": 0.571,
+          "recall": 0.8,
+          "f1": 0.667,
+          "tp": 4,
+          "fp": 3,
+          "fn": 1
+        },
+        "vague_term": {
+          "precision": 0.846,
+          "recall": 0.786,
+          "f1": 0.815,
+          "tp": 11,
+          "fp": 2,
+          "fn": 3
+        }
+      }
+    },
+    "rewrite": {
+      "n": 52,
+      "resolves_ambiguity": 0.731,
+      "preserves_intent": 0.962,
+      "invents_facts": 0.0,
+      "avg_quality_before": 70.1,
+      "avg_quality_after": 91.9
+    },
+    "false_positives": [
+      {
+        "id": "C01",
+        "text": "The system shall lock a member account after 5 consecutive failed login attempts.",
+        "flagged": [
+          {
+            "type": "undefined_term",
+            "severity": "medium",
+            "span": "lock a member account",
+            "start": 17,
+            "end": 38,
+            "explanation": "The term 'lock a member account' is not defined. It is unclear what actions are implied by locking an account (e.g., temporary disablement, permanent disablement, requiring admin intervention, etc.)."
+          }
+        ]
+      },
+      {
+        "id": "C11",
+        "text": "The database shall be backed up every day at 02:00 UTC.",
+        "flagged": [
+          {
+            "type": "missing_actor",
+            "severity": "medium",
+            "span": "shall be backed up",
+            "start": 13,
+            "end": 31,
+            "explanation": "It is unclear who or what is responsible for backing up the database. While 'the system' is often implied, the specific agent (e.g., an automated script, a specific service, or a human operator) is not defined, which could lead to confusion about responsibility and implementation."
+          }
+        ]
+      },
+      {
+        "id": "C16",
+        "text": "The website shall render correctly in the latest two major versions of Chrome, Firefox and Safari.",
+        "flagged": [
+          {
+            "type": "undefined_term",
+            "severity": "medium",
+            "span": "major versions",
+            "start": 53,
+            "end": 67,
+            "explanation": "The term 'major versions' is not explicitly defined. It's unclear if this refers to the first digit (e.g., Chrome 100 vs 101) or a specific release cycle definition by the browser vendors."
+          }
+        ]
+      }
+    ],
+    "false_negatives": [
+      {
+        "id": "A40",
+        "text": "The system shall display the names of all employees and managers who work in Berlin.",
+        "gold": [
+          "syntactic"
+        ]
+      }
+    ],
+    "bad_rewrites": [
+      {
+        "id": "A13",
+        "text": "The application should support offline mode.",
+        "rewrite": "The application shall operate in an offline mode.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite uses 'shall operate' instead of 'should support', which is a stronger, more formal statement of requirement, but doesn't resolve the ambiguity of what 'offline mode' entails. It preserves the original intent without inventing facts."
+        }
+      },
+      {
+        "id": "A14",
+        "text": "The system might send an email notification when an order ships.",
+        "rewrite": "The system shall send an email notification when an order ships.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": false,
+          "invents_facts": false,
+          "reason": "The original requirement uses 'might', indicating an optional or conditional action. The rewrite uses 'shall', making it a mandatory requirement. This changes the intent from a possibility to a certainty."
+        }
+      },
+      {
+        "id": "A15",
+        "text": "Reports shall be generated for all borrowed books.",
+        "rewrite": "The system shall generate reports for all borrowed books.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies 'Reports shall be generated' to 'The system shall generate reports', which is a minor improvement in clarity but doesn't resolve any significant ambiguity. The core meaning and scope remain the same, and no new facts are introduced."
+        }
+      },
+      {
+        "id": "A17",
+        "text": "Invalid orders shall be rejected.",
+        "rewrite": "The system shall reject invalid orders.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies the actor (the system) but doesn't resolve the ambiguity of what constitutes an 'invalid order'. The intent is preserved, and no new facts are invented."
+        }
+      },
+      {
+        "id": "A18",
+        "text": "Audit logs shall be retained for seven years.",
+        "rewrite": "The system shall retain audit logs for seven years.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies 'who' is responsible for retaining the logs (the system) but doesn't resolve any ambiguity about what 'retained' means (e.g., online, offline, accessible, etc.). It preserves the original intent and does not invent facts."
+        }
+      },
+      {
+        "id": "A19",
+        "text": "The data will be validated before submission.",
+        "rewrite": "The system shall validate the data before submission.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies that 'the system' is responsible for validation, which is a minor improvement but doesn't resolve significant ambiguity about *what* data, *how* it's validated, or *what* constitutes 'submission'."
+        }
+      },
+      {
+        "id": "A31",
+        "text": "The system shall send the invoice to the customer and it shall log the transaction.",
+        "rewrite": "The system shall send the invoice to the customer. The system shall log the transaction.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite splits a compound sentence into two simple sentences. This does not resolve any ambiguity, preserve or invent facts. The original intent is preserved."
+        }
+      },
+      {
+        "id": "A35",
+        "text": "The server shall notify the client when it is overloaded.",
+        "rewrite": "The server shall notify the client when the server is overloaded.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies the pronoun 'it' by explicitly stating 'the server', but the original was already clear enough in context. No ambiguity was truly resolved."
+        }
+      },
+      {
+        "id": "A38",
+        "text": "The portal shall register new members.",
+        "rewrite": "The portal shall enroll new members.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The words \"register\" and \"enroll\" are synonyms in this context, so the rewrite does not resolve any ambiguity, preserves the original intent, and does not invent facts."
+        }
+      },
+      {
+        "id": "A41",
+        "text": "The system shall allow editing of orders by customers with discounts.",
+        "rewrite": "The system shall allow customers to edit orders. The system shall allow customers with discounts to edit orders.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite splits the original into two statements, but the second statement is redundant given the first. It doesn't resolve the ambiguity of what 'editing of orders by customers with discounts' means beyond simply allowing customers to edit orders. It doesn't clarify if 'with discounts' refers to customers who have discounts, or orders that have discounts, or if there are specific editing rules for such cases."
+        }
+      },
+      {
+        "id": "A43",
+        "text": "If the user is an admin or a manager and has approval, the system shall allow deletion.",
+        "rewrite": "The system shall allow a user to delete an item if the user is an admin or if the user is a manager and has approval.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite rephrases the original but does not resolve the ambiguity of whether 'approval' applies to both admins and managers, or only managers. The intent is preserved, and no new facts are invented."
+        }
+      },
+      {
+        "id": "A45",
+        "text": "The system shall send a reminder to users who have not logged in, unless they opted out and have a premium plan.",
+        "rewrite": "The system shall send a reminder to users who have not logged in, unless the user has opted out of reminders and has a premium plan.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies that the opt-out is specifically for reminders, which was implied but not explicit in the original. This doesn't resolve any major ambiguity or invent facts, but rather makes the intent slightly clearer."
+        }
+      },
+      {
+        "id": "A46",
+        "text": "The discount shall apply when the order total is over $100 and under $50.",
+        "rewrite": "The system shall apply a discount when the order total is [TBD: correct condition for discount to apply].",
+        "judge": {
+          "resolves_ambiguity": true,
+          "preserves_intent": false,
+          "invents_facts": false,
+          "reason": "The original requirement is contradictory (over $100 AND under $50 is impossible). The rewrite correctly identifies this ambiguity and uses a TBD placeholder to indicate that the correct condition needs to be determined. It preserves the intent of applying a discount based on an order total condition, but acknowledges the original condition was flawed."
+        }
+      },
+      {
+        "id": "A49",
+        "text": "Users in the premium tier shall have priority access.",
+        "rewrite": "The system shall provide priority access to users who are in the premium tier.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite rephrases the original without resolving any ambiguity. The term 'priority access' remains vague regarding what it entails or how it is implemented. No new facts are introduced, and the intent is preserved."
+        }
+      },
+      {
+        "id": "C11",
+        "text": "The database shall be backed up every day at 02:00 UTC.",
+        "rewrite": "The system shall back up the database every day at 02:00 UTC.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies that the 'system' is responsible for the backup, which was implied but not explicitly stated in the original. This is a minor clarification and doesn't change the core meaning or add new facts."
+        }
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "A01",
+      "text": "The system should respond quickly to user queries.",
+      "ambiguous": true,
+      "types": [
+        "vague_term",
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable",
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "non_testable",
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "non_testable",
+          "severity": "high",
+          "span": "should",
+          "start": 11,
+          "end": 17,
+          "explanation": "The term 'should' makes this requirement non-testable as it implies a suggestion rather than a mandatory function."
+        },
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "quickly",
+          "start": 26,
+          "end": 33,
+          "explanation": "The term 'quickly' is subjective and unmeasurable. It needs a specific, quantifiable time limit to be testable."
+        }
+      ],
+      "rewrite": "The system shall respond to user queries within [TBD: response time] seconds.",
+      "questions": [
+        "What is the maximum acceptable response time for user queries?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies 'quickly' with a specific, albeit TBD, time limit, resolving ambiguity without inventing concrete facts."
+      },
+      "q_before": 30,
+      "q_after": 92
+    },
+    {
+      "id": "A02",
+      "text": "The user interface shall be user-friendly.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "user-friendly",
+          "start": 28,
+          "end": 41,
+          "explanation": "The term 'user-friendly' is subjective and unmeasurable. Different engineers could interpret this differently, leading to varied implementations. Specific, measurable criteria are needed."
+        }
+      ],
+      "rewrite": "The user interface shall enable a user to complete [TBD: specific tasks] within [TBD: time limit] and with a success rate of [TBD: success rate] after [TBD: training duration] of training.",
+      "questions": [
+        "What specific tasks should the user be able to complete using the user interface?",
+        "What is the maximum acceptable time for a user to complete these tasks?",
+        "What is the minimum acceptable success rate for users completing these tasks?",
+        "What is the maximum acceptable training duration for users to achieve the specified success rate and task completion time?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite replaces the vague term 'user-friendly' with measurable criteria, using placeholders for the specific values. This resolves ambiguity without inventing concrete facts, and the intent to have a usable interface is preserved."
+      },
+      "q_before": 65,
+      "q_after": 68
+    },
+    {
+      "id": "A03",
+      "text": "The application shall load pages fast on mobile devices.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "fast",
+          "start": 33,
+          "end": 37,
+          "explanation": "The term 'fast' is subjective and unmeasurable. It needs to be quantified with a specific time limit (e.g., 'within 2 seconds')."
+        }
+      ],
+      "rewrite": "The application shall load pages on mobile devices within [TBD: page load time] seconds.",
+      "questions": [
+        "What is the maximum acceptable page load time on mobile devices?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite resolves the ambiguity of 'fast' by introducing a quantifiable metric (page load time) with a TBD placeholder, which is an honest resolution. It preserves the original intent of fast page loading on mobile devices and does not invent facts as the specific time is left as a placeholder."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A04",
+      "text": "The system shall provide adequate security for stored payment data.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "adequate",
+          "start": 25,
+          "end": 33,
+          "explanation": "The term 'adequate' is subjective and unmeasurable. It is unclear what level of security is considered adequate, leading to different interpretations and implementations."
+        }
+      ],
+      "rewrite": "The system shall protect stored payment data from unauthorized access and modification. The system shall encrypt stored payment data using [TBD: encryption standard] and restrict access to authorized personnel only. The system shall log all access attempts to stored payment data.",
+      "questions": [
+        "What specific encryption standard should be used for stored payment data?",
+        "What are the specific criteria for authorizing personnel to access stored payment data?",
+        "What constitutes an 'unauthorized access attempt' that should be logged?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies what 'adequate security' means by specifying encryption, access restrictions, and logging, without inventing concrete details beyond what is implied by 'adequate security'."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A05",
+      "text": "Search results shall be returned in a reasonable amount of time.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor",
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor",
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be returned",
+          "start": 15,
+          "end": 32,
+          "explanation": "The actor responsible for returning the search results is not specified. While 'the system' is implied, the specific component or service is unclear."
+        },
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "reasonable amount of time",
+          "start": 38,
+          "end": 63,
+          "explanation": "The term 'reasonable amount of time' is subjective and not measurable. It needs to be quantified with a specific time limit (e.g., 'within 2 seconds')."
+        }
+      ],
+      "rewrite": "The system shall return search results within [TBD: specific time limit].",
+      "questions": [
+        "What is the specific time limit for returning search results?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite replaces the ambiguous 'reasonable amount of time' with a placeholder for a 'specific time limit', which directly addresses the ambiguity without inventing a concrete value. The intent to return results within a certain timeframe is preserved."
+      },
+      "q_before": 45,
+      "q_after": 92
+    },
+    {
+      "id": "A06",
+      "text": "The software shall be easy to maintain.",
+      "ambiguous": true,
+      "types": [
+        "vague_term",
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "easy to maintain",
+          "start": 22,
+          "end": 38,
+          "explanation": "The term 'easy to maintain' is subjective and not measurable. Different engineers may have different interpretations of what constitutes 'easy' maintenance, leading to varied implementations."
+        }
+      ],
+      "rewrite": "The software shall be maintainable with a mean time to repair (MTTR) of [TBD: mean time to repair] for [TBD: percentage] of defects.",
+      "questions": [
+        "What is the maximum acceptable mean time to repair (MTTR) for defects?",
+        "What percentage of defects should meet this MTTR target?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement is vague. The rewrite introduces specific, measurable criteria (MTTR, percentage of defects) to define 'easy to maintain', which resolves the ambiguity. It preserves the intent of maintainability without inventing concrete numbers, as it uses placeholders."
+      },
+      "q_before": 65,
+      "q_after": 84
+    },
+    {
+      "id": "A07",
+      "text": "The checkout flow shall be seamless for returning customers.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "seamless",
+          "start": 27,
+          "end": 35,
+          "explanation": "The term 'seamless' is subjective and unmeasurable. Different engineers could interpret what constitutes a 'seamless' checkout flow differently, leading to varied implementations."
+        }
+      ],
+      "rewrite": "The system shall enable returning customers to complete the checkout process without encountering any interruptions or requiring re-entry of previously provided information. The system shall automatically retrieve and pre-fill customer details, such as shipping address and payment preferences, upon customer identification.",
+      "questions": [
+        "What specific actions or steps, if any, should be entirely eliminated or automated for returning customers?",
+        "What is the maximum acceptable number of manual interactions a returning customer should have during checkout?",
+        "What is the maximum acceptable time duration for the entire checkout process for a returning customer?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies what 'seamless' means in the context of a checkout flow for returning customers without adding new, unimplied facts. It specifies 'without encountering any interruptions or requiring re-entry of previously provided information' and gives examples of pre-filled details, which are reasonable interpretations of 'seamless'."
+      },
+      "q_before": 65,
+      "q_after": 65
+    },
+    {
+      "id": "A08",
+      "text": "The system shall handle peak load efficiently.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "efficiently",
+          "start": 34,
+          "end": 45,
+          "explanation": "The term 'efficiently' is subjective and unmeasurable. It's unclear what specific performance metrics or thresholds define efficient handling of peak load."
+        }
+      ],
+      "rewrite": "The system shall handle peak load without exceeding a [TBD: maximum response time] for [TBD: percentage] of requests and without dropping more than [TBD: percentage] of requests.",
+      "questions": [
+        "What is the maximum acceptable response time during peak load?",
+        "What percentage of requests must meet the maximum response time during peak load?",
+        "What is the maximum acceptable percentage of dropped requests during peak load?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite successfully resolves the ambiguity of 'efficiently' by introducing measurable criteria for response time and dropped requests, using placeholders for the specific values. It preserves the original intent of handling peak load well without inventing concrete numbers."
+      },
+      "q_before": 65,
+      "q_after": 65
+    },
+    {
+      "id": "A09",
+      "text": "Error messages shall be clear and helpful.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "clear and helpful",
+          "start": 24,
+          "end": 41,
+          "explanation": "The terms 'clear' and 'helpful' are subjective and unmeasurable. What one user finds clear, another may not. This makes it impossible to objectively test or implement."
+        }
+      ],
+      "rewrite": "The system shall display error messages that enable a user to understand the error and take appropriate action to resolve it.",
+      "questions": [
+        "What specific information should an error message provide to be considered 'clear'?",
+        "What constitutes 'helpful' in the context of an error message (e.g., suggesting a solution, providing a link to documentation)?",
+        "How will the clarity and helpfulness of error messages be measured or validated?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies what 'clear and helpful' means by specifying that the user should be able to understand the error and take action to resolve it, without inventing new facts."
+      },
+      "q_before": 65,
+      "q_after": 65
+    },
+    {
+      "id": "A10",
+      "text": "The dashboard shall display data in a timely manner.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "in a timely manner",
+          "start": 33,
+          "end": 51,
+          "explanation": "The term 'in a timely manner' is subjective and unmeasurable. It does not specify what constitutes 'timely' (e.g., within seconds, minutes, or hours), leading to different interpretations of the required performance."
+        }
+      ],
+      "rewrite": "The dashboard shall display data within [TBD: time duration] of the data becoming available.",
+      "questions": [
+        "What is the maximum acceptable delay for the dashboard to display data after it becomes available?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite resolves the ambiguity of 'timely manner' by introducing a placeholder for a specific time duration, while preserving the original intent. It does not invent facts as it uses a TBD placeholder."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A11",
+      "text": "The system should be robust.",
+      "ambiguous": true,
+      "types": [
+        "non_testable",
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable",
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "non_testable"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "non_testable",
+          "severity": "high",
+          "span": "should be robust",
+          "start": 11,
+          "end": 27,
+          "explanation": "The term 'robust' is subjective and cannot be objectively tested or measured. It's also a non-testable requirement as 'should' implies optionality."
+        }
+      ],
+      "rewrite": "The system shall remain operational and continue to perform its intended functions without failure when subjected to [TBD: specific failure conditions, e.g., invalid input, network interruptions, hardware failures].",
+      "questions": [
+        "What specific failure conditions should the system be robust against?",
+        "What is the maximum acceptable downtime or performance degradation under these conditions?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement \"The system should be robust\" is highly ambiguous. The rewrite resolves this by defining robustness in terms of remaining operational and performing intended functions without failure under specified conditions. The use of a TBD placeholder for specific failure conditions indicates that these details are genuinely missing and not invented. The intent of requiring a robust system is preserved, but made more concrete."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A12",
+      "text": "The reporting module must be reliable.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "reliable",
+          "start": 29,
+          "end": 37,
+          "explanation": "The term 'reliable' is subjective and unmeasurable. It needs to be quantified with specific metrics (e.g., uptime, error rate, mean time between failures) to be testable and ensure consistent implementation."
+        }
+      ],
+      "rewrite": "The reporting module shall operate with a [TBD: specific uptime percentage] uptime, a [TBD: specific error rate] error rate, and a [TBD: specific mean time between failures] mean time between failures.",
+      "questions": [
+        "What is the required uptime percentage for the reporting module?",
+        "What is the maximum allowable error rate for the reporting module?",
+        "What is the required mean time between failures (MTBF) for the reporting module?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement 'reliable' is ambiguous. The rewrite resolves this by breaking down reliability into measurable components (uptime, error rate, MTBF) and using placeholders for the specific values, thus not inventing facts but rather identifying where facts are needed. The intent of having a reliable module is preserved by specifying how reliability will be measured."
+      },
+      "q_before": 65,
+      "q_after": 76
+    },
+    {
+      "id": "A13",
+      "text": "The application should support offline mode.",
+      "ambiguous": true,
+      "types": [
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "non_testable"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "non_testable",
+          "severity": "medium",
+          "span": "should support",
+          "start": 16,
+          "end": 30,
+          "explanation": "The term 'should support' makes this requirement non-testable. It implies a desirable but not mandatory feature, making it unclear if it must be implemented."
+        }
+      ],
+      "rewrite": "The application shall operate in an offline mode.",
+      "questions": [
+        "Is operating in offline mode a mandatory or optional feature?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite uses 'shall operate' instead of 'should support', which is a stronger, more formal statement of requirement, but doesn't resolve the ambiguity of what 'offline mode' entails. It preserves the original intent without inventing facts."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A14",
+      "text": "The system might send an email notification when an order ships.",
+      "ambiguous": true,
+      "types": [
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "non_testable"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "non_testable",
+          "severity": "high",
+          "span": "might send",
+          "start": 11,
+          "end": 21,
+          "explanation": "The word 'might' makes this requirement non-testable. It does not specify whether the system must send an email or if it is optional, making it impossible to verify if the system behaves correctly."
+        }
+      ],
+      "rewrite": "The system shall send an email notification when an order ships.",
+      "questions": [
+        "Is sending an email notification when an order ships mandatory or optional?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": false,
+        "invents_facts": false,
+        "reason": "The original requirement uses 'might', indicating an optional or conditional action. The rewrite uses 'shall', making it a mandatory requirement. This changes the intent from a possibility to a certainty."
+      },
+      "q_before": 65,
+      "q_after": 100
+    },
+    {
+      "id": "A15",
+      "text": "Reports shall be generated for all borrowed books.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be generated",
+          "start": 8,
+          "end": 26,
+          "explanation": "The requirement uses passive voice, making it unclear who or what is responsible for generating the reports. Is it the system, a specific user role, or an automated process?"
+        }
+      ],
+      "rewrite": "The system shall generate reports for all borrowed books.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies 'Reports shall be generated' to 'The system shall generate reports', which is a minor improvement in clarity but doesn't resolve any significant ambiguity. The core meaning and scope remain the same, and no new facts are introduced."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A16",
+      "text": "Passwords must be encrypted.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "encrypted",
+          "start": 18,
+          "end": 27,
+          "explanation": "The requirement states that passwords must be encrypted, but it does not specify the encryption algorithm, key length, or other security parameters. This could lead to different implementations with varying levels of security."
+        }
+      ],
+      "rewrite": "The system shall encrypt passwords using a [TBD: encryption algorithm] with a [TBD: key length] key.",
+      "questions": [
+        "What encryption algorithm shall be used for passwords?",
+        "What key length shall be used for password encryption?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies how passwords will be encrypted by adding placeholders for the specific algorithm and key length, which were missing details in the original. It preserves the intent of encrypting passwords without inventing concrete facts, as the placeholders indicate missing information rather than specific, invented values."
+      },
+      "q_before": 80,
+      "q_after": 84
+    },
+    {
+      "id": "A17",
+      "text": "Invalid orders shall be rejected.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be rejected",
+          "start": 15,
+          "end": 32,
+          "explanation": "It is unclear who or what is responsible for rejecting invalid orders. Is it the system, a specific user role, or an automated process?"
+        }
+      ],
+      "rewrite": "The system shall reject invalid orders.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies the actor (the system) but doesn't resolve the ambiguity of what constitutes an 'invalid order'. The intent is preserved, and no new facts are invented."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A18",
+      "text": "Audit logs shall be retained for seven years.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be retained",
+          "start": 11,
+          "end": 28,
+          "explanation": "It is unclear who or what is responsible for retaining the audit logs. Is it the system, a specific user, or an external service?"
+        }
+      ],
+      "rewrite": "The system shall retain audit logs for seven years.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies 'who' is responsible for retaining the logs (the system) but doesn't resolve any ambiguity about what 'retained' means (e.g., online, offline, accessible, etc.). It preserves the original intent and does not invent facts."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A19",
+      "text": "The data will be validated before submission.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "will be validated",
+          "start": 9,
+          "end": 26,
+          "explanation": "The requirement uses passive voice, making it unclear who or what is responsible for validating the data."
+        }
+      ],
+      "rewrite": "The system shall validate the data before submission.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that 'the system' is responsible for validation, which is a minor improvement but doesn't resolve significant ambiguity about *what* data, *how* it's validated, or *what* constitutes 'submission'."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A20",
+      "text": "Notifications shall be sent when stock runs low.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor",
+        "undefined_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "low",
+          "start": 44,
+          "end": 47,
+          "explanation": "The term 'low' is subjective and unmeasurable. It needs to be defined with a specific threshold or quantity to determine when stock is considered 'low'."
+        }
+      ],
+      "rewrite": "The system shall send notifications when the stock level falls below [TBD: low stock threshold].",
+      "questions": [
+        "What specific threshold defines 'low' stock for triggering a notification?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies what 'runs low' means by introducing a 'low stock threshold' placeholder, which resolves ambiguity without inventing facts. The core intent of sending notifications for low stock is preserved."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A21",
+      "text": "The system shall support many concurrent users.",
+      "ambiguous": true,
+      "types": [
+        "unbounded_quantifier"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "unbounded_quantifier",
+          "severity": "high",
+          "span": "many",
+          "start": 25,
+          "end": 29,
+          "explanation": "The term 'many' is an unbounded quantifier and does not specify a measurable number of concurrent users the system should support. This could lead to different interpretations of the system's performance requirements."
+        }
+      ],
+      "rewrite": "The system shall support [TBD: number] concurrent users.",
+      "questions": [
+        "What is the specific number of concurrent users the system must support?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite resolves the ambiguity of 'many' by introducing a placeholder for a specific number, while preserving the original intent. It does not invent facts as it uses a placeholder."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A22",
+      "text": "The system shall store several years of transaction history.",
+      "ambiguous": true,
+      "types": [
+        "unbounded_quantifier"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "unbounded_quantifier",
+          "severity": "high",
+          "span": "several years",
+          "start": 23,
+          "end": 36,
+          "explanation": "The term 'several years' is an unbounded quantifier. It is unclear how many years of transaction history should be stored, leading to different interpretations for implementation and testing."
+        }
+      ],
+      "rewrite": "The system shall store [TBD: number] years of transaction history.",
+      "questions": [
+        "What is the exact number of years for which transaction history must be stored?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite explicitly identifies the missing 'number' of years, which was ambiguous in the original 'several years'. It preserves the intent of storing transaction history for multiple years and does not invent any specific number, instead using a placeholder."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A23",
+      "text": "Users can upload multiple files at once.",
+      "ambiguous": true,
+      "types": [
+        "unbounded_quantifier"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable",
+        "unbounded_quantifier"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "medium",
+          "span": "multiple",
+          "start": 17,
+          "end": 25,
+          "explanation": "The term 'multiple' is vague. It is unclear what the minimum or maximum number of files is considered 'multiple'."
+        }
+      ],
+      "rewrite": "The system shall allow users to upload [TBD: number] files simultaneously.",
+      "questions": [
+        "What is the minimum number of files considered 'multiple'?",
+        "What is the maximum number of files that can be uploaded simultaneously?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that 'multiple' means a specific number of files simultaneously, which is a genuine ambiguity in the original. The use of a TBD placeholder indicates that the specific number is yet to be determined, thus not inventing a fact."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "A24",
+      "text": "The platform shall support various payment methods.",
+      "ambiguous": true,
+      "types": [
+        "unbounded_quantifier",
+        "open_ended"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "unbounded_quantifier",
+          "severity": "high",
+          "span": "various",
+          "start": 27,
+          "end": 34,
+          "explanation": "The term 'various' is an unbounded quantifier. It does not specify which or how many payment methods the platform should support, leading to different interpretations of the scope of work."
+        }
+      ],
+      "rewrite": "The platform shall support the following payment methods: [TBD: specific payment methods].",
+      "questions": [
+        "Which specific payment methods shall the platform support?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite explicitly identifies that specific payment methods need to be listed, resolving the ambiguity of 'various'. It preserves the intent by still requiring support for multiple methods. The [TBD] placeholder correctly indicates a missing fact without inventing one."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A25",
+      "text": "The system shall respond to most requests within 2 seconds.",
+      "ambiguous": true,
+      "types": [
+        "unbounded_quantifier"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "unbounded_quantifier",
+          "severity": "high",
+          "span": "most",
+          "start": 28,
+          "end": 32,
+          "explanation": "The term 'most' is an unbounded quantifier. It is unclear what percentage or number of requests must be responded to within 2 seconds to satisfy this requirement. This makes the requirement non-testable and open to different interpretations."
+        }
+      ],
+      "rewrite": "The system shall respond to at least [TBD: percentage]% of requests within 2 seconds.",
+      "questions": [
+        "What percentage of requests must the system respond to within 2 seconds?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original 'most' is ambiguous. The rewrite replaces it with a specific, albeit TBD, percentage, which resolves the ambiguity without inventing a concrete number. The intent of a performance target is preserved."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A26",
+      "text": "The librarian shall be able to export data in formats such as PDF, etc.",
+      "ambiguous": true,
+      "types": [
+        "open_ended"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "open_ended"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "open_ended"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "open_ended",
+          "severity": "high",
+          "span": "such as PDF, etc.",
+          "start": 54,
+          "end": 71,
+          "explanation": "The requirement uses 'such as' and 'etc.' which indicates an open-ended list of formats, making it unclear which specific formats beyond PDF should be supported."
+        }
+      ],
+      "rewrite": "The librarian shall be able to export data in formats including PDF and [TBD: other export formats].",
+      "questions": [
+        "What other export formats, besides PDF, should the system support?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that 'etc.' refers to 'other export formats' and uses a TBD placeholder, which resolves ambiguity without inventing facts. The intent remains the same."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A27",
+      "text": "The system shall send alerts via email, SMS, and so on.",
+      "ambiguous": true,
+      "types": [
+        "open_ended"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "open_ended"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "open_ended"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "open_ended",
+          "severity": "high",
+          "span": "and so on",
+          "start": 45,
+          "end": 54,
+          "explanation": "The phrase \"and so on\" indicates an incomplete list of alert mechanisms, leaving it open to interpretation which other methods should be supported."
+        }
+      ],
+      "rewrite": "The system shall send alerts via email and SMS. The system shall also support [TBD: other alert mechanisms].",
+      "questions": [
+        "What other alert mechanisms, besides email and SMS, should the system support?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original 'and so on' is vague. The rewrite clarifies the specific methods (email, SMS) and uses a TBD placeholder for other potential methods, which resolves the ambiguity without inventing facts or changing the original intent."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A28",
+      "text": "Patient records shall be updated as needed.",
+      "ambiguous": true,
+      "types": [
+        "open_ended",
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor",
+        "open_ended"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor",
+        "open_ended"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be updated",
+          "start": 16,
+          "end": 32,
+          "explanation": "It is unclear who or what is responsible for updating the patient records."
+        },
+        {
+          "type": "open_ended",
+          "severity": "high",
+          "span": "as needed",
+          "start": 33,
+          "end": 42,
+          "explanation": "This phrase is vague and does not specify the conditions or triggers for when updates are needed, leading to different interpretations."
+        }
+      ],
+      "rewrite": "The system shall update patient records when [TBD: conditions or triggers for updating patient records].",
+      "questions": [
+        "What are the specific conditions or triggers that necessitate updating patient records?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement 'as needed' is highly ambiguous. The rewrite explicitly identifies that conditions or triggers are missing, which resolves the ambiguity by highlighting the missing information without inventing facts. It preserves the intent of updating patient records."
+      },
+      "q_before": 45,
+      "q_after": 92
+    },
+    {
+      "id": "A29",
+      "text": "The app shall support browsers including Chrome, Firefox, etc.",
+      "ambiguous": true,
+      "types": [
+        "open_ended"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "open_ended"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "open_ended"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "open_ended",
+          "severity": "high",
+          "span": "etc.",
+          "start": 58,
+          "end": 62,
+          "explanation": "The use of 'etc.' makes the list of supported browsers open-ended, leading to ambiguity about which other browsers should be supported."
+        }
+      ],
+      "rewrite": "The app shall support Chrome and Firefox browsers, and [TBD: other browsers].",
+      "questions": [
+        "Which other browsers must the app support?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original 'etc.' is vague. The rewrite explicitly lists Chrome and Firefox and uses a TBD placeholder for other browsers, which resolves the ambiguity without inventing facts. The intent to support multiple browsers is preserved."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A30",
+      "text": "The admin shall configure permissions as appropriate.",
+      "ambiguous": true,
+      "types": [
+        "open_ended",
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "open_ended"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "open_ended",
+          "severity": "high",
+          "span": "as appropriate",
+          "start": 38,
+          "end": 52,
+          "explanation": "The term 'as appropriate' is open-ended and does not specify the criteria or rules for configuring permissions, leading to different interpretations."
+        }
+      ],
+      "rewrite": "The administrator shall configure permissions according to [TBD: criteria for configuring permissions].",
+      "questions": [
+        "What are the specific criteria or rules for configuring permissions?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement is vague about what 'as appropriate' means. The rewrite explicitly identifies that criteria are needed, resolving the ambiguity without inventing facts. The intent to configure permissions is preserved."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A31",
+      "text": "The system shall send the invoice to the customer and it shall log the transaction.",
+      "ambiguous": true,
+      "types": [
+        "referential"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "referential"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "it",
+          "start": 54,
+          "end": 56,
+          "explanation": "The pronoun 'it' could refer to 'the system' or 'the invoice', leading to ambiguity about what logs the transaction."
+        }
+      ],
+      "rewrite": "The system shall send the invoice to the customer. The system shall log the transaction.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite splits a compound sentence into two simple sentences. This does not resolve any ambiguity, preserve or invent facts. The original intent is preserved."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A32",
+      "text": "When the user uploads a document to the folder, it shall be scanned for viruses.",
+      "ambiguous": true,
+      "types": [
+        "referential",
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor",
+        "referential"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "it",
+          "start": 48,
+          "end": 50,
+          "explanation": "The pronoun 'it' could refer to 'the document' or 'the folder'. While 'the document' is more likely, it should be explicit."
+        }
+      ],
+      "rewrite": "When the user uploads a document to the folder, the document shall be scanned for viruses.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement uses the pronoun 'it', which could refer to either the 'document' or the 'folder'. The rewrite clarifies that 'the document' is what shall be scanned, resolving this ambiguity without changing the original intent or inventing new facts."
+      },
+      "q_before": 80,
+      "q_after": 80
+    },
+    {
+      "id": "A33",
+      "text": "The manager shall review the report from the analyst before he submits it to the client.",
+      "ambiguous": true,
+      "types": [
+        "referential"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "he",
+          "start": 1,
+          "end": 3,
+          "explanation": "The pronoun 'he' could refer to either 'the manager' or 'the analyst', leading to ambiguity about who submits the report to the client."
+        }
+      ],
+      "rewrite": "The manager shall review the report from the analyst before the manager submits it to the client.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement uses the pronoun 'he', which could refer to either the manager or the analyst. The rewrite clarifies that 'the manager' is the one who submits the report, resolving this ambiguity without changing the original meaning or adding new information."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A34",
+      "text": "The module reads data from the sensor and sends it to the controller, which then updates it.",
+      "ambiguous": true,
+      "types": [
+        "referential"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "it",
+          "start": 48,
+          "end": 50,
+          "explanation": "The pronoun 'it' could refer to 'data' or 'the sensor'."
+        }
+      ],
+      "rewrite": "The module shall read data from the sensor. The module shall send the data to the controller. The controller shall update the data.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite breaks down the original into three distinct, unambiguous statements, clarifying the sequence of actions and the actor responsible for each. It preserves the original intent without adding new information."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A35",
+      "text": "The server shall notify the client when it is overloaded.",
+      "ambiguous": true,
+      "types": [
+        "referential"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "it",
+          "start": 40,
+          "end": 42,
+          "explanation": "The pronoun 'it' could refer to 'the server' or 'the client', leading to different interpretations of who is overloaded."
+        }
+      ],
+      "rewrite": "The server shall notify the client when the server is overloaded.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies the pronoun 'it' by explicitly stating 'the server', but the original was already clear enough in context. No ambiguity was truly resolved."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A36",
+      "text": "The system shall bank the daily transactions at midnight.",
+      "ambiguous": true,
+      "types": [
+        "lexical"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "lexical"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "lexical",
+          "severity": "medium",
+          "span": "bank",
+          "start": 17,
+          "end": 21,
+          "explanation": "The term 'bank' can have several meanings in this context, such as to store, to process, or to transfer to a financial institution. This ambiguity could lead to different implementations of the transaction handling."
+        }
+      ],
+      "rewrite": "The system shall [TBD: action, e.g., process, store, transfer to a financial institution] the daily transactions at midnight.",
+      "questions": [
+        "What specific action does \"bank\" refer to for the daily transactions (e.g., process, store, transfer to a financial institution)?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement uses the vague term 'bank', which could mean several things. The rewrite correctly identifies this ambiguity and replaces it with a [TBD] placeholder, prompting for a specific action (e.g., process, store, transfer to a financial institution). This resolves the ambiguity without inventing facts and preserves the original intent of handling daily transactions at midnight."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "A37",
+      "text": "The application shall refresh the chart every minute.",
+      "ambiguous": true,
+      "types": [
+        "lexical"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "lexical"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "lexical",
+          "severity": "medium",
+          "span": "refresh",
+          "start": 22,
+          "end": 29,
+          "explanation": "The term 'refresh' can mean either to redraw the chart with existing data or to re-fetch new data from a source and then redraw it. This distinction is critical for implementation."
+        }
+      ],
+      "rewrite": "The application shall [TBD: action for 'refresh'] the chart every minute.",
+      "questions": [
+        "Does 'refresh' mean to redraw the chart with existing data, or to re-fetch new data from a source and then redraw it?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite correctly identifies and flags the ambiguous term 'refresh' for further clarification without altering the core intent or inventing new facts. The placeholder indicates a missing fact that needs to be defined."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "A38",
+      "text": "The portal shall register new members.",
+      "ambiguous": true,
+      "types": [
+        "lexical"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "lexical"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "lexical",
+          "severity": "medium",
+          "span": "register",
+          "start": 17,
+          "end": 25,
+          "explanation": "The term 'register' can mean to record information about new members or to enroll them in a service, which could lead to different implementations."
+        }
+      ],
+      "rewrite": "The portal shall enroll new members.",
+      "questions": [
+        "What specific information about new members must the portal record?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The words \"register\" and \"enroll\" are synonyms in this context, so the rewrite does not resolve any ambiguity, preserves the original intent, and does not invent facts."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A39",
+      "text": "Admins and users with access can edit the document.",
+      "ambiguous": true,
+      "types": [
+        "syntactic"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "syntactic"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "syntactic",
+          "severity": "medium",
+          "span": "Admins and users with access",
+          "start": 0,
+          "end": 28,
+          "explanation": "It is unclear whether 'with access' applies only to 'users' or to both 'Admins' and 'users'."
+        }
+      ],
+      "rewrite": "The system shall allow administrators and users with [TBD: type of access] to edit the document.",
+      "questions": [
+        "Does 'with access' apply to both 'Admins' and 'users', or only to 'users'?",
+        "What specific type of access is required for users to edit the document?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that the system is the one allowing the action and introduces a placeholder for the specific type of access, which resolves the ambiguity of 'users with access' without inventing facts."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "A40",
+      "text": "The system shall display the names of all employees and managers who work in Berlin.",
+      "ambiguous": true,
+      "types": [
+        "syntactic"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "A41",
+      "text": "The system shall allow editing of orders by customers with discounts.",
+      "ambiguous": true,
+      "types": [
+        "syntactic"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "syntactic"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "syntactic",
+          "severity": "medium",
+          "span": "customers with discounts",
+          "start": 44,
+          "end": 68,
+          "explanation": "It is unclear whether 'with discounts' modifies 'customers' (only customers who have discounts can edit orders) or 'orders' (customers can edit orders that have discounts). This could lead to different implementations of access control or order editing capabilities."
+        }
+      ],
+      "rewrite": "The system shall allow customers to edit orders. The system shall allow customers with discounts to edit orders.",
+      "questions": [
+        "Does 'with discounts' modify 'customers' (only customers who have discounts can edit orders) or 'orders' (customers can edit orders that have discounts)?",
+        "Is it mandatory that only customers with discounts can edit orders, or is it optional?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite splits the original into two statements, but the second statement is redundant given the first. It doesn't resolve the ambiguity of what 'editing of orders by customers with discounts' means beyond simply allowing customers to edit orders. It doesn't clarify if 'with discounts' refers to customers who have discounts, or orders that have discounts, or if there are specific editing rules for such cases."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A42",
+      "text": "The report shall list customers who bought products from Europe or Asia and Africa.",
+      "ambiguous": true,
+      "types": [
+        "syntactic",
+        "conflicting_condition"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "syntactic"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "syntactic",
+          "severity": "medium",
+          "span": "Europe or Asia and Africa",
+          "start": 57,
+          "end": 82,
+          "explanation": "The grouping of the geographical regions is ambiguous. It could mean (Europe or Asia) and Africa, or Europe or (Asia and Africa)."
+        }
+      ],
+      "rewrite": "The report shall list customers who bought products from Europe, or from Asia and Africa, or from Europe, Asia, and Africa.",
+      "questions": [
+        "Should the report list customers who bought products from (Europe or Asia) and Africa, or from Europe or (Asia and Africa)?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement is ambiguous due to the 'or' and 'and' conjunctions. It's unclear if 'Asia and Africa' is a single condition or if 'Africa' is a separate condition. The rewrite clarifies the possible interpretations of the original statement without adding new information."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A43",
+      "text": "If the user is an admin or a manager and has approval, the system shall allow deletion.",
+      "ambiguous": true,
+      "types": [
+        "conflicting_condition"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "syntactic"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "syntactic",
+          "severity": "medium",
+          "span": "an admin or a manager and has approval",
+          "start": 15,
+          "end": 53,
+          "explanation": "It is unclear whether 'has approval' applies to both 'admin' and 'manager', or only to 'manager'."
+        }
+      ],
+      "rewrite": "The system shall allow a user to delete an item if the user is an admin or if the user is a manager and has approval.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite rephrases the original but does not resolve the ambiguity of whether 'approval' applies to both admins and managers, or only managers. The intent is preserved, and no new facts are invented."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A44",
+      "text": "The system shall refund the customer if the item is damaged or late and the customer has a receipt.",
+      "ambiguous": true,
+      "types": [
+        "conflicting_condition"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "conflicting_condition"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "conflicting_condition",
+          "severity": "high",
+          "span": "if the item is damaged or late and the customer has a receipt",
+          "start": 37,
+          "end": 98,
+          "explanation": "The logical grouping of conditions is unclear. It could mean (damaged OR late) AND (has a receipt), or damaged OR (late AND has a receipt). This affects when a refund is issued."
+        }
+      ],
+      "rewrite": "The system shall refund the customer if the item is damaged or if the item is late, provided that the customer has a receipt.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies the logical condition by explicitly stating 'if the item is damaged or if the item is late', which removes a minor ambiguity about whether 'late' also applies to the customer having a receipt. The intent is preserved, and no new facts are invented."
+      },
+      "q_before": 65,
+      "q_after": 100
+    },
+    {
+      "id": "A45",
+      "text": "The system shall send a reminder to users who have not logged in, unless they opted out and have a premium plan.",
+      "ambiguous": true,
+      "types": [
+        "conflicting_condition"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "conflicting_condition"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "conflicting_condition",
+          "severity": "medium",
+          "span": "unless they opted out and have a premium plan",
+          "start": 66,
+          "end": 111,
+          "explanation": "The condition for not sending a reminder is 'opted out AND have a premium plan'. It's unclear if 'opted out' alone is sufficient to prevent a reminder, or if both conditions must be met. This could lead to different implementations regarding who receives reminders."
+        }
+      ],
+      "rewrite": "The system shall send a reminder to users who have not logged in, unless the user has opted out of reminders and has a premium plan.",
+      "questions": [
+        "Is a user opting out of reminders sufficient to prevent a reminder, or must the user also have a premium plan?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that the opt-out is specifically for reminders, which was implied but not explicit in the original. This doesn't resolve any major ambiguity or invent facts, but rather makes the intent slightly clearer."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "A46",
+      "text": "The discount shall apply when the order total is over $100 and under $50.",
+      "ambiguous": true,
+      "types": [
+        "conflicting_condition"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "conflicting_condition"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "conflicting_condition",
+          "severity": "high",
+          "span": "over $100 and under $50",
+          "start": 49,
+          "end": 72,
+          "explanation": "The conditions 'over $100' and 'under $50' are mutually exclusive, meaning the discount will never apply."
+        }
+      ],
+      "rewrite": "The system shall apply a discount when the order total is [TBD: correct condition for discount to apply].",
+      "questions": [
+        "What is the correct condition for the order total to apply the discount?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": false,
+        "invents_facts": false,
+        "reason": "The original requirement is contradictory (over $100 AND under $50 is impossible). The rewrite correctly identifies this ambiguity and uses a TBD placeholder to indicate that the correct condition needs to be determined. It preserves the intent of applying a discount based on an order total condition, but acknowledges the original condition was flawed."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A47",
+      "text": "Data shall be retained according to the SLA.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term",
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "SLA",
+          "start": 40,
+          "end": 43,
+          "explanation": "The term 'SLA' is not defined in the requirement or context, making it unclear what specific retention policies apply."
+        }
+      ],
+      "rewrite": "The system shall retain data according to the [TBD: specific data retention policies defined in the SLA].",
+      "questions": [
+        "What specific data retention policies are defined in the SLA?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that the system is responsible for data retention and uses a TBD placeholder to indicate that the specific policies from the SLA need to be incorporated, thus resolving ambiguity without inventing facts."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A48",
+      "text": "The system shall comply with the standard security policy.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "standard security policy",
+          "start": 33,
+          "end": 57,
+          "explanation": "The 'standard security policy' is not defined, making it impossible to know what specific security requirements the system must comply with."
+        }
+      ],
+      "rewrite": "The system shall comply with the [TBD: definition of standard security policy].",
+      "questions": [
+        "What is the definition of the standard security policy?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite explicitly identifies the missing definition of the 'standard security policy' with a TBD placeholder, which resolves the ambiguity of the original requirement without inventing any facts. The intent to comply with the policy is preserved."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "A49",
+      "text": "Users in the premium tier shall have priority access.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term",
+        "vague_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "premium tier",
+          "start": 13,
+          "end": 25,
+          "explanation": "The term 'premium tier' is not defined, leading to ambiguity about what constitutes this tier and who belongs to it."
+        },
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "priority access",
+          "start": 37,
+          "end": 52,
+          "explanation": "The term 'priority access' is not defined, leading to ambiguity about what it entails (e.g., faster response times, dedicated resources, preferential queuing) and how it is measured or enforced."
+        }
+      ],
+      "rewrite": "The system shall provide priority access to users who are in the premium tier.",
+      "questions": [
+        "What criteria define a user as belonging to the 'premium tier'?",
+        "What specific benefits or mechanisms constitute 'priority access' (e.g., faster response times, dedicated resources, preferential queuing)?",
+        "How is 'priority access' measured or enforced?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite rephrases the original without resolving any ambiguity. The term 'priority access' remains vague regarding what it entails or how it is implemented. No new facts are introduced, and the intent is preserved."
+      },
+      "q_before": 60,
+      "q_after": 100
+    },
+    {
+      "id": "A50",
+      "text": "The module shall apply the usual discount rules.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "usual discount rules",
+          "start": 27,
+          "end": 47,
+          "explanation": "The term 'usual discount rules' is not defined, leading to ambiguity about which specific rules should be applied."
+        }
+      ],
+      "rewrite": "The module shall apply the [TBD: specific discount rules].",
+      "questions": [
+        "What are the specific discount rules that the module shall apply?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement 'usual discount rules' is ambiguous. The rewrite replaces this with a placeholder '[TBD: specific discount rules]', which explicitly acknowledges that the specific rules need to be defined, thus resolving the ambiguity. It preserves the intent to apply discount rules without inventing any specific rules."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "C01",
+      "text": "The system shall lock a member account after 5 consecutive failed login attempts.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "lock a member account",
+          "start": 17,
+          "end": 38,
+          "explanation": "The term 'lock a member account' is not defined. It is unclear what actions are implied by locking an account (e.g., temporary disablement, permanent disablement, requiring admin intervention, etc.)."
+        }
+      ],
+      "rewrite": "The system shall, after 5 consecutive failed login attempts, lock a member account. The system shall prevent any further login attempts for a locked member account until [TBD: conditions for unlocking the account].",
+      "questions": [
+        "What specific actions are implied by 'lock a member account'?",
+        "What are the conditions under which a locked member account can be unlocked?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies the behavior of a locked account by stating that further login attempts are prevented, which was implied but not explicitly stated in the original. It also uses a TBD placeholder for the unlocking conditions, indicating a missing fact rather than inventing one."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "C02",
+      "text": "The system shall return search results within 2 seconds for at least 95% of queries under a load of 500 concurrent users.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C03",
+      "text": "The system shall encrypt all stored passwords using bcrypt with a cost factor of at least 12.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C04",
+      "text": "The video player shall provide a fast-forward button that skips 10 seconds.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C05",
+      "text": "The mobile application shall run on Android 12 and later.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C06",
+      "text": "The system shall send a confirmation email to the customer within 60 seconds of order placement.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C07",
+      "text": "The administrator shall be able to disable a user account from the user management page.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C08",
+      "text": "The system shall retain audit logs for 7 years.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C09",
+      "text": "The API shall return HTTP status 404 when the requested resource does not exist.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C10",
+      "text": "The system shall display the total price including 20% VAT on the checkout page.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C11",
+      "text": "The database shall be backed up every day at 02:00 UTC.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be backed up",
+          "start": 13,
+          "end": 31,
+          "explanation": "It is unclear who or what is responsible for backing up the database. While 'the system' is often implied, the specific agent (e.g., an automated script, a specific service, or a human operator) is not defined, which could lead to confusion about responsibility and implementation."
+        }
+      ],
+      "rewrite": "The system shall back up the database every day at 02:00 UTC.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that the 'system' is responsible for the backup, which was implied but not explicitly stated in the original. This is a minor clarification and doesn't change the core meaning or add new facts."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "C12",
+      "text": "Users shall be able to reset their password using a link emailed to their registered address, valid for 30 minutes.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C13",
+      "text": "The system shall support CSV and PDF export of the monthly sales report.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C14",
+      "text": "The login page shall require a username and a password of at least 12 characters.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C15",
+      "text": "The system shall log each failed payment attempt with timestamp, user ID and error code.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C16",
+      "text": "The website shall render correctly in the latest two major versions of Chrome, Firefox and Safari.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "major versions",
+          "start": 53,
+          "end": 67,
+          "explanation": "The term 'major versions' is not explicitly defined. It's unclear if this refers to the first digit (e.g., Chrome 100 vs 101) or a specific release cycle definition by the browser vendors."
+        }
+      ],
+      "rewrite": "The website shall render correctly in the latest two major versions of Chrome, Firefox, and Safari. A major version is defined as [TBD: definition of major version].",
+      "questions": [
+        "What is the definition of a 'major version' for web browsers?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite adds a placeholder to define 'major version', which was ambiguous in the original, thus resolving ambiguity without inventing facts or changing the intent."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "C17",
+      "text": "The system shall allow a librarian to renew a loan up to 3 times per book.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C18",
+      "text": "The system shall terminate user sessions after 15 minutes of inactivity.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C19",
+      "text": "The thermostat shall switch on the heater when the room temperature falls below 18 °C.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C20",
+      "text": "The system shall display the error message \"Invalid credentials\" when the login fails.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C21",
+      "text": "The system shall store uploaded files up to 25 MB each.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C22",
+      "text": "The payment module shall process refunds within 5 business days.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C23",
+      "text": "The nurse shall be able to view a patient's allergy list within 2 seconds of opening the record.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C24",
+      "text": "The system shall generate a borrowing report listing every book borrowed during the selected date range.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C25",
+      "text": "The application shall support English, Spanish and German.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C26",
+      "text": "The system shall send an SMS to the driver when the delivery is assigned.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C27",
+      "text": "The system shall prevent the booking of a room already reserved for the same time slot.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C28",
+      "text": "The web server shall handle at least 1,000 requests per second with a CPU utilization below 70%.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C29",
+      "text": "The system shall require two-factor authentication for all administrator accounts.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C30",
+      "text": "The system shall display the stock quantity on the product page and update it within 5 seconds of a change.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C31",
+      "text": "The customer shall be able to cancel an order before it is shipped.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C32",
+      "text": "The system shall use TLS 1.2 or higher for all external connections.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C33",
+      "text": "The mobile app shall request location permission only when the user opens the map screen.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C34",
+      "text": "The system shall assign each new ticket a unique 8-digit identifier.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C35",
+      "text": "The system shall notify the manager by email when an expense above $1,000 is submitted.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C36",
+      "text": "The scheduler shall run the cleanup job every Sunday at 03:00 server time.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C37",
+      "text": "The system shall allow users to filter orders by status, date range and customer name.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C38",
+      "text": "The system shall round all monetary amounts to two decimal places.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C39",
+      "text": "The user shall be able to undo the last 20 actions in the editor.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C40",
+      "text": "The system shall display the user's name in the page header after login.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C41",
+      "text": "The kiosk shall print a receipt within 3 seconds after payment is confirmed.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C42",
+      "text": "The system shall reject any file upload with an extension other than .pdf, .png or .jpg.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C43",
+      "text": "The system shall compute the late fee as $0.50 per day per overdue book, up to a maximum of $10.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C44",
+      "text": "The inventory service shall publish a \"StockLow\" event when quantity falls below the reorder threshold stored for the product.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C45",
+      "text": "The system shall be available 99.9% of the time, measured monthly, excluding scheduled maintenance.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C46",
+      "text": "The patient portal shall display lab results within 1 hour of their release by the laboratory.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C47",
+      "text": "The system shall record the date and time of each login in UTC.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C48",
+      "text": "Admin users shall be able to assign one role to each user account.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C49",
+      "text": "The elevator controller shall open the doors within 2 seconds of reaching the requested floor.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "C50",
+      "text": "The system shall display a progress bar during file uploads.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    }
+  ]
+}

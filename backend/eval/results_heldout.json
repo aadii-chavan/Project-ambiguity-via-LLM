@@ -1,0 +1,1004 @@
+{
+  "summary": {
+    "model": "gemini-2.5-flash",
+    "prompt_hash": "6fe4b9b32e",
+    "n": 30,
+    "llm_errors": 0,
+    "baseline": {
+      "binary": {
+        "precision": 0.857,
+        "recall": 0.4,
+        "f1": 0.545,
+        "tp": 6,
+        "fp": 1,
+        "fn": 9,
+        "tn": 14,
+        "accuracy": 0.667
+      },
+      "types": {
+        "precision": 0.875,
+        "recall": 0.35,
+        "f1": 0.5,
+        "tp": 7,
+        "fp": 1,
+        "fn": 13
+      }
+    },
+    "llm": {
+      "binary": {
+        "precision": 0.933,
+        "recall": 0.933,
+        "f1": 0.933,
+        "tp": 14,
+        "fp": 1,
+        "fn": 1,
+        "tn": 14,
+        "accuracy": 0.933
+      },
+      "types": {
+        "precision": 0.765,
+        "recall": 0.65,
+        "f1": 0.703,
+        "tp": 13,
+        "fp": 4,
+        "fn": 7
+      },
+      "per_type": {
+        "conflicting_condition": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "lexical": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.667,
+          "tp": 1,
+          "fp": 0,
+          "fn": 1
+        },
+        "missing_actor": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "tp": 1,
+          "fp": 1,
+          "fn": 1
+        },
+        "non_testable": {
+          "precision": 1.0,
+          "recall": 0.333,
+          "f1": 0.5,
+          "tp": 1,
+          "fp": 0,
+          "fn": 2
+        },
+        "open_ended": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1
+        },
+        "referential": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "syntactic": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1
+        },
+        "unbounded_quantifier": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.667,
+          "tp": 1,
+          "fp": 1,
+          "fn": 0
+        },
+        "undefined_term": {
+          "precision": 0.6,
+          "recall": 1.0,
+          "f1": 0.75,
+          "tp": 3,
+          "fp": 2,
+          "fn": 0
+        },
+        "vague_term": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.857,
+          "tp": 3,
+          "fp": 0,
+          "fn": 1
+        }
+      }
+    },
+    "rewrite": {
+      "n": 15,
+      "resolves_ambiguity": 0.667,
+      "preserves_intent": 0.933,
+      "invents_facts": 0.0,
+      "avg_quality_before": 66.8,
+      "avg_quality_after": 93.3
+    },
+    "false_positives": [
+      {
+        "id": "HC02",
+        "text": "The system shall display a secure-connection icon in the browser address bar.",
+        "flagged": [
+          {
+            "type": "undefined_term",
+            "severity": "medium",
+            "span": "secure-connection icon",
+            "start": 27,
+            "end": 49,
+            "explanation": "The term 'secure-connection icon' is not defined. It is unclear what specific icon or visual indicator is expected, as different browsers or security levels might display different icons (e.g., a padlock, a green bar, an 'https' label). This needs to be specified to ensure consistent implementation."
+          }
+        ]
+      }
+    ],
+    "false_negatives": [
+      {
+        "id": "HA06",
+        "text": "The system shall execute the order once the customer confirms.",
+        "gold": [
+          "lexical"
+        ]
+      }
+    ],
+    "bad_rewrites": [
+      {
+        "id": "HA03",
+        "text": "Orders shall be archived after completion.",
+        "rewrite": "The system shall archive orders after completion.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite clarifies that 'the system' is responsible for archiving, which was implied but not explicit. It doesn't resolve any ambiguity about *when* after completion, or *how* they are archived, or *where* they are archived."
+        }
+      },
+      {
+        "id": "HA07",
+        "text": "The service shall drop invalid messages.",
+        "rewrite": "The service shall [TBD: action for invalid messages] invalid messages.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite replaces 'drop' with a TBD placeholder, indicating that the specific action for invalid messages is still to be defined. This doesn't resolve the ambiguity of what 'drop' means, but rather explicitly marks it as unresolved. The intent to handle invalid messages is preserved, and no new facts are invented."
+        }
+      },
+      {
+        "id": "HA10",
+        "text": "The system shall show old documents and files from last year.",
+        "rewrite": "The system shall display documents and files that meet the criteria for \"old documents and files\".",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite replaces one ambiguous phrase (\"from last year\") with another equally ambiguous phrase (\"meet the criteria for 'old documents and files'\"). It doesn't resolve the ambiguity of what constitutes 'old'. The intent is preserved as it still refers to 'old documents and files'. No new facts are invented, as it merely rephrases the original ambiguity."
+        }
+      },
+      {
+        "id": "HA11",
+        "text": "The system shall alert the supervisor if the temperature is high or the pressure is low and the valve is open.",
+        "rewrite": "The system shall alert the supervisor if (the temperature is high OR the pressure is low) AND the valve is open. OR The system shall alert the supervisor if the temperature is high OR (the pressure is low AND the valve is open).",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": false,
+          "invents_facts": false,
+          "reason": "The rewrite presents two different interpretations of the original requirement, highlighting the ambiguity rather than resolving it. It does not preserve the intent because it offers two distinct, mutually exclusive interpretations as if they were both valid rewrites of the original single statement. No facts are invented, as it only rephrases the original conditions."
+        }
+      },
+      {
+        "id": "HA13",
+        "text": "VIP customers shall receive free shipping.",
+        "rewrite": "The system shall provide free shipping for VIP customers.",
+        "judge": {
+          "resolves_ambiguity": false,
+          "preserves_intent": true,
+          "invents_facts": false,
+          "reason": "The rewrite rephrases the original without adding or removing information, but it doesn't resolve any ambiguity regarding what constitutes a 'VIP customer' or 'free shipping'."
+        }
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "HA01",
+      "text": "The system shall process payments quickly.",
+      "ambiguous": true,
+      "types": [
+        "vague_term"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "quickly",
+          "start": 34,
+          "end": 41,
+          "explanation": "The term 'quickly' is subjective and unmeasurable. It needs to be quantified with a specific time limit or performance metric to avoid different interpretations."
+        }
+      ],
+      "rewrite": "The system shall process payments within [TBD: time limit] of initiation.",
+      "questions": [
+        "What is the maximum acceptable time for the system to process a payment?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies 'quickly' with a specific, albeit TBD, time limit, preserving the original intent without inventing concrete facts."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "HA02",
+      "text": "The app should have a modern look.",
+      "ambiguous": true,
+      "types": [
+        "vague_term",
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable",
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "non_testable",
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "non_testable",
+          "severity": "high",
+          "span": "should",
+          "start": 8,
+          "end": 14,
+          "explanation": "The term 'should' indicates a desirable but not mandatory feature, making it non-testable as a strict requirement."
+        },
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "modern look",
+          "start": 22,
+          "end": 33,
+          "explanation": "The term 'modern look' is subjective and open to various interpretations, making it impossible to test or implement consistently."
+        }
+      ],
+      "rewrite": "The app shall conform to the [TBD: specific UI/UX guidelines or design system] to ensure a consistent and up-to-date visual appearance.",
+      "questions": [
+        "What specific UI/UX guidelines or design system should the app conform to?",
+        "Is this a mandatory or optional requirement?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite replaces the subjective term 'modern look' with a placeholder for specific UI/UX guidelines, which resolves the ambiguity without inventing facts. It preserves the intent of having a visually current application."
+      },
+      "q_before": 30,
+      "q_after": 92
+    },
+    {
+      "id": "HA03",
+      "text": "Orders shall be archived after completion.",
+      "ambiguous": true,
+      "types": [
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be archived",
+          "start": 7,
+          "end": 24,
+          "explanation": "It is unclear who or what system is responsible for archiving the orders."
+        }
+      ],
+      "rewrite": "The system shall archive orders after completion.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that 'the system' is responsible for archiving, which was implied but not explicit. It doesn't resolve any ambiguity about *when* after completion, or *how* they are archived, or *where* they are archived."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "HA04",
+      "text": "The system shall support lots of products in the catalog.",
+      "ambiguous": true,
+      "types": [
+        "unbounded_quantifier"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "unbounded_quantifier"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "unbounded_quantifier",
+          "severity": "high",
+          "span": "lots of",
+          "start": 25,
+          "end": 32,
+          "explanation": "The term 'lots of' is an unbounded quantifier and does not specify a measurable number or range of products the system should support, leading to different interpretations of the system's capacity requirements."
+        }
+      ],
+      "rewrite": "The system shall support [TBD: number] products in the catalog.",
+      "questions": [
+        "What is the minimum and maximum number of products the system must support in the catalog?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite replaces the vague 'lots of' with a specific placeholder '[TBD: number]', which resolves the ambiguity without inventing a concrete number. The intent to support multiple products is preserved."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "HA05",
+      "text": "Users may export their data in common formats.",
+      "ambiguous": true,
+      "types": [
+        "open_ended",
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "non_testable"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "missing_actor",
+        "unbounded_quantifier"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "missing_actor",
+          "severity": "low",
+          "span": "may export",
+          "start": 6,
+          "end": 16,
+          "explanation": "While 'Users' are the actor, the word 'may' implies permission but doesn't specify who grants this permission or under what conditions."
+        },
+        {
+          "type": "unbounded_quantifier",
+          "severity": "medium",
+          "span": "common formats",
+          "start": 31,
+          "end": 45,
+          "explanation": "The term 'common formats' is subjective and not clearly defined, leading to different interpretations of which formats should be supported."
+        }
+      ],
+      "rewrite": "The system shall allow authenticated users to export their data. The system shall support data export in [TBD: common data formats] formats.",
+      "questions": [
+        "What specific data formats are considered 'common formats' for data export?",
+        "Under what conditions are users permitted to export their data?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that 'users' are 'authenticated users' and introduces a placeholder for the specific 'common formats', which resolves ambiguity without inventing facts. The core intent of allowing data export is preserved."
+      },
+      "q_before": 72,
+      "q_after": 92
+    },
+    {
+      "id": "HA06",
+      "text": "The system shall execute the order once the customer confirms.",
+      "ambiguous": true,
+      "types": [
+        "lexical"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HA07",
+      "text": "The service shall drop invalid messages.",
+      "ambiguous": true,
+      "types": [
+        "lexical"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "lexical"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "lexical",
+          "severity": "medium",
+          "span": "drop",
+          "start": 18,
+          "end": 22,
+          "explanation": "The term 'drop' can mean to delete, ignore, or reject, leading to different implementations of how invalid messages are handled."
+        }
+      ],
+      "rewrite": "The service shall [TBD: action for invalid messages] invalid messages.",
+      "questions": [
+        "What specific action should the service take when an invalid message is received (e.g., delete, ignore, reject, log)?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite replaces 'drop' with a TBD placeholder, indicating that the specific action for invalid messages is still to be defined. This doesn't resolve the ambiguity of what 'drop' means, but rather explicitly marks it as unresolved. The intent to handle invalid messages is preserved, and no new facts are invented."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "HA08",
+      "text": "The manager shall approve the request of the employee after she completes the form.",
+      "ambiguous": true,
+      "types": [
+        "referential"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "she",
+          "start": 60,
+          "end": 63,
+          "explanation": "The pronoun 'she' could refer to either 'the manager' or 'the employee', leading to ambiguity about who completes the form."
+        }
+      ],
+      "rewrite": "The manager shall approve the employee's request after the employee completes the form.",
+      "questions": [],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement uses the pronoun 'she', which could refer to either the manager or the employee. The rewrite clarifies that 'she' refers to the employee, resolving the ambiguity without changing the intent or inventing facts."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "HA09",
+      "text": "The gateway forwards the packet to the server, and it then acknowledges it.",
+      "ambiguous": true,
+      "types": [
+        "referential"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "referential"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "referential",
+          "severity": "medium",
+          "span": "it",
+          "start": 51,
+          "end": 53,
+          "explanation": "The pronoun 'it' could refer to either 'the gateway' or 'the server', leading to ambiguity about which entity acknowledges the packet."
+        }
+      ],
+      "rewrite": "The gateway shall forward the packet to the server. The [TBD: entity] shall then acknowledge the packet.",
+      "questions": [
+        "Which entity acknowledges the packet: the gateway or the server?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The original requirement is ambiguous about who acknowledges the packet ('it' could refer to the gateway or the server). The rewrite explicitly identifies the ambiguity with a TBD placeholder, resolving it. The intent is preserved as the actions of forwarding and acknowledging remain, just with clarified actors. No facts are invented, as the TBD indicates missing information rather than adding new, concrete details."
+      },
+      "q_before": 80,
+      "q_after": 92
+    },
+    {
+      "id": "HA10",
+      "text": "The system shall show old documents and files from last year.",
+      "ambiguous": true,
+      "types": [
+        "syntactic"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "old documents and files",
+          "start": 22,
+          "end": 45,
+          "explanation": "The term 'old documents and files' is not defined. What criteria determine if a document or file is considered 'old' beyond the 'from last year' clause? For example, does it mean documents created before last year, or documents that haven't been accessed in a year?"
+        }
+      ],
+      "rewrite": "The system shall display documents and files that meet the criteria for \"old documents and files\".",
+      "questions": [
+        "What criteria define an \"old document and file\"? Specifically, does \"from last year\" mean created before the current year, or not accessed within the last year, or some other criteria?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite replaces one ambiguous phrase (\"from last year\") with another equally ambiguous phrase (\"meet the criteria for 'old documents and files'\"). It doesn't resolve the ambiguity of what constitutes 'old'. The intent is preserved as it still refers to 'old documents and files'. No new facts are invented, as it merely rephrases the original ambiguity."
+      },
+      "q_before": 80,
+      "q_after": 100
+    },
+    {
+      "id": "HA11",
+      "text": "The system shall alert the supervisor if the temperature is high or the pressure is low and the valve is open.",
+      "ambiguous": true,
+      "types": [
+        "conflicting_condition"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "conflicting_condition"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "conflicting_condition",
+          "severity": "high",
+          "span": "if the temperature is high or the pressure is low and the valve is open",
+          "start": 38,
+          "end": 109,
+          "explanation": "The logical grouping of the conditions is unclear. It could mean (temperature is high OR pressure is low) AND valve is open, or temperature is high OR (pressure is low AND valve is open). This ambiguity could lead to different alert triggers."
+        }
+      ],
+      "rewrite": "The system shall alert the supervisor if (the temperature is high OR the pressure is low) AND the valve is open. OR The system shall alert the supervisor if the temperature is high OR (the pressure is low AND the valve is open).",
+      "questions": [
+        "Which condition is correct: (temperature is high OR pressure is low) AND valve is open, or temperature is high OR (pressure is low AND valve is open)?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": false,
+        "invents_facts": false,
+        "reason": "The rewrite presents two different interpretations of the original requirement, highlighting the ambiguity rather than resolving it. It does not preserve the intent because it offers two distinct, mutually exclusive interpretations as if they were both valid rewrites of the original single statement. No facts are invented, as it only rephrases the original conditions."
+      },
+      "q_before": 65,
+      "q_after": 100
+    },
+    {
+      "id": "HA12",
+      "text": "Access shall be granted per company policy.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term",
+        "missing_actor"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "missing_actor"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "company policy",
+          "start": 28,
+          "end": 42,
+          "explanation": "The 'company policy' is not defined, making it impossible to determine the specific rules for access."
+        }
+      ],
+      "rewrite": "The system shall grant access according to the [TBD: specific rules of the company policy for access].",
+      "questions": [
+        "What are the specific rules of the company policy that govern access?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies that the 'company policy' refers to 'specific rules of the company policy for access', which resolves the ambiguity of what aspect of company policy is relevant. The intent is preserved, and no facts are invented as a placeholder is used."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "HA13",
+      "text": "VIP customers shall receive free shipping.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "VIP customers",
+          "start": 0,
+          "end": 13,
+          "explanation": "The term 'VIP customers' is not defined, leading to ambiguity about which customers qualify for free shipping."
+        },
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "free shipping",
+          "start": 28,
+          "end": 41,
+          "explanation": "The term 'free shipping' is not defined. It's unclear what shipping methods or speeds are included as 'free'."
+        }
+      ],
+      "rewrite": "The system shall provide free shipping for VIP customers.",
+      "questions": [
+        "What criteria define a \"VIP customer\"?",
+        "What shipping methods and speeds are included in \"free shipping\"?"
+      ],
+      "judge": {
+        "resolves_ambiguity": false,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite rephrases the original without adding or removing information, but it doesn't resolve any ambiguity regarding what constitutes a 'VIP customer' or 'free shipping'."
+      },
+      "q_before": 30,
+      "q_after": 100
+    },
+    {
+      "id": "HA14",
+      "text": "The system shall comply with applicable regulations.",
+      "ambiguous": true,
+      "types": [
+        "undefined_term",
+        "vague_term"
+      ],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "high",
+          "span": "applicable regulations",
+          "start": 29,
+          "end": 51,
+          "explanation": "The term 'applicable regulations' is not defined, leading to ambiguity about which specific regulations the system must comply with."
+        }
+      ],
+      "rewrite": "The system shall comply with [TBD: specific applicable regulations].",
+      "questions": [
+        "Which specific regulations are applicable to the system?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite explicitly identifies the need to specify the regulations, which resolves the ambiguity of 'applicable regulations' without inventing any specific regulation. It preserves the original intent to comply with regulations."
+      },
+      "q_before": 65,
+      "q_after": 92
+    },
+    {
+      "id": "HA15",
+      "text": "The software shall provide appropriate error handling.",
+      "ambiguous": true,
+      "types": [
+        "vague_term",
+        "non_testable"
+      ],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "vague_term"
+      ],
+      "llm_conf": 1.0,
+      "llm_issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "appropriate",
+          "start": 27,
+          "end": 38,
+          "explanation": "The term 'appropriate' is subjective and unmeasurable. It does not specify what constitutes appropriate error handling, leading to different interpretations by engineers."
+        }
+      ],
+      "rewrite": "The software shall provide error handling that includes [TBD: specific error handling mechanisms] for [TBD: types of errors].",
+      "questions": [
+        "What specific error handling mechanisms are considered appropriate (e.g., logging, user notification, retry mechanisms, graceful degradation)?",
+        "For which types of errors should the system provide error handling (e.g., input validation errors, network errors, database errors, internal system errors)?",
+        "What is the expected behavior of the system when an error occurs?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite explicitly identifies the missing information (specific mechanisms and types of errors) using TBD placeholders, which resolves the ambiguity of 'appropriate' without inventing facts or changing the original intent."
+      },
+      "q_before": 65,
+      "q_after": 84
+    },
+    {
+      "id": "HC01",
+      "text": "The system shall hash passwords using SHA-256 with a per-user salt.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC02",
+      "text": "The system shall display a secure-connection icon in the browser address bar.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": true,
+      "base_types": [
+        "vague_term"
+      ],
+      "llm_pred": true,
+      "llm_types": [
+        "undefined_term"
+      ],
+      "llm_conf": 0.9,
+      "llm_issues": [
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "secure-connection icon",
+          "start": 27,
+          "end": 49,
+          "explanation": "The term 'secure-connection icon' is not defined. It is unclear what specific icon or visual indicator is expected, as different browsers or security levels might display different icons (e.g., a padlock, a green bar, an 'https' label). This needs to be specified to ensure consistent implementation."
+        }
+      ],
+      "rewrite": "The system shall display a [TBD: specific secure-connection icon, e.g., a padlock, a green bar, or an 'https' label] in the browser address bar.",
+      "questions": [
+        "What specific secure-connection icon or visual indicator should be displayed (e.g., a padlock, a green bar, an 'https' label)?"
+      ],
+      "judge": {
+        "resolves_ambiguity": true,
+        "preserves_intent": true,
+        "invents_facts": false,
+        "reason": "The rewrite clarifies what kind of icon should be displayed without inventing a specific one, using a TBD placeholder."
+      },
+      "q_before": 80,
+      "q_after": 80
+    },
+    {
+      "id": "HC03",
+      "text": "The application shall send a push notification to the user 10 minutes before a scheduled appointment.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC04",
+      "text": "The API shall accept requests with a JSON body no larger than 1 MB.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC05",
+      "text": "The system shall allow a customer to add up to 50 items to a shopping cart.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC06",
+      "text": "The report generator shall produce a PDF within 30 seconds for reports of up to 10,000 rows.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC07",
+      "text": "The system shall prompt the user to confirm before deleting a project.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC08",
+      "text": "The accountant shall be able to export the ledger as a CSV file.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC09",
+      "text": "The system shall display prices in the currency selected in the user profile.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC10",
+      "text": "The smart lock shall unlock the door when the registered phone is within 2 meters.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC11",
+      "text": "The system shall block an IP address for 15 minutes after 10 failed login attempts from that address.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC12",
+      "text": "The setup wizard shall consist of exactly four steps: license, location, options and confirmation.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC13",
+      "text": "The system shall store each invoice for 10 years after its issue date.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC14",
+      "text": "The system shall show the order status as one of: Pending, Shipped, Delivered or Cancelled.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    },
+    {
+      "id": "HC15",
+      "text": "The system shall send a weekly summary email to every subscribed user on Mondays at 08:00 in the user's time zone.",
+      "ambiguous": false,
+      "types": [],
+      "base_pred": false,
+      "base_types": [],
+      "llm_pred": false,
+      "llm_types": [],
+      "llm_conf": 1.0,
+      "llm_issues": []
+    }
+  ]
+}
