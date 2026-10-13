@@ -1,0 +1,10 @@
+{
+  "color": {
+    "pageBg": "#F7F7F9", "card": "#FFFFFF", "border": "#ECECF1",
+    "primary": "#6C5CE7", "primaryHover": "#5B4BD6", "primaryTint": "#EFEBFF", "primarySoft": "#B9AEF5",
+    "secondary": "#E8A06A", "positive": "#16A34A", "negative": "#E5484D", "warning": "#F5A524",
+    "ink": "#14141F", "muted": "#6B6B7B", "mutedNumber": "#B4B0C8", "tooltip": "#26233A"
+  },
+  "radius": {"card": 20, "control": 12, "frame": 28},
+  "font": "Plus Jakarta Sans"
+}

@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --page: #f7f7f9;
+  --card: #ffffff;
+  --border: #ececf1;
+  --ink: #14141f;
+  --muted: #6b6b7b;
+  --muted-num: #b4b0c8;
+  --primary: #6c5ce7;
+  --primary-hover: #5b4bd6;
+  --primary-tint: #efebff;
+  --primary-soft: #b9aef5;
+  --secondary: #e8a06a;
+  --positive: #16a34a;
+  --negative: #e5484d;
+  --warning: #f5a524;
+  --tooltip: #26233a;
+  --hover: #f4f3f8;
+  --backdrop: radial-gradient(1200px 600px at 10% -10%, #e4defc 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 100%, #ded8fb 0%, transparent 55%), #efedfa;
+}
+.dark {
+  --page: #0f0f17;
+  --card: #17171f;
+  --border: #26263a;
+  --ink: #f2f2f8;
+  --muted: #9a9ab0;
+  --muted-num: #55536e;
+  --primary: #8577f0;
+  --primary-hover: #988cf5;
+  --primary-tint: #26224a;
+  --primary-soft: #5a4fb8;
+  --hover: #1e1e29;
+  --backdrop: radial-gradient(1200px 600px at 10% -10%, #231f45 0%, transparent 60%), #0a0a10;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-card: var(--card);
+  --color-line: var(--border);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-mutednum: var(--muted-num);
+  --color-primary: var(--primary);
+  --color-primaryhover: var(--primary-hover);
+  --color-tint: var(--primary-tint);
+  --color-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+  --color-tooltip: var(--tooltip);
+  --color-hover: var(--hover);
+  --font-sans: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+html, body, #root { min-height: 100%; }
+body {
+  background: var(--backdrop);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+* { border-color: var(--border); }
+::selection { background: var(--primary-soft); }
+
+.hatch {
+  background-image: repeating-linear-gradient(135deg, transparent 0 3px, color-mix(in srgb, var(--muted) 22%, transparent) 3px 4px);
+}
+.scroll-thin::-webkit-scrollbar { width: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }

@@ -1,0 +1,137 @@
+{
+  "id": "s1",
+  "created_at": "2026-10-13T09:30:00Z",
+  "name": "Library Management SRS v0.3",
+  "summary": {
+    "total": 4,
+    "ambiguous": 3,
+    "ambiguity_rate": 0.75,
+    "avg_quality_before": 54.5,
+    "avg_quality_after": 96.0,
+    "by_type": {
+      "vague_term": 2,
+      "missing_actor": 1,
+      "unbounded_quantifier": 1,
+      "open_ended": 1,
+      "referential": 1
+    },
+    "by_severity": {
+      "high": 2,
+      "medium": 3,
+      "low": 1
+    }
+  },
+  "requirements": [
+    {
+      "id": "R1",
+      "original": "The system should respond quickly to user queries.",
+      "is_ambiguous": true,
+      "issues": [
+        {
+          "type": "vague_term",
+          "severity": "high",
+          "span": "quickly",
+          "start": 26,
+          "end": 33,
+          "explanation": "No measurable response-time threshold."
+        },
+        {
+          "type": "non_testable",
+          "severity": "medium",
+          "span": "should",
+          "start": 11,
+          "end": 17,
+          "explanation": "'should' does not state a binding obligation; use 'shall'."
+        }
+      ],
+      "suggested_rewrite": "The system shall return results to user queries within 2 seconds for at least 95% of requests.",
+      "clarifying_questions": [
+        "What response time is acceptable?",
+        "Under what load should this hold?"
+      ],
+      "confidence": 0.93,
+      "quality_before": 45,
+      "quality_after": 95,
+      "decision": "pending",
+      "final_text": null
+    },
+    {
+      "id": "R2",
+      "original": "Reports shall be generated for all borrowed books.",
+      "is_ambiguous": true,
+      "issues": [
+        {
+          "type": "missing_actor",
+          "severity": "medium",
+          "span": "shall be generated",
+          "start": 8,
+          "end": 26,
+          "explanation": "Passive voice; the generating actor is not named."
+        },
+        {
+          "type": "unbounded_quantifier",
+          "severity": "low",
+          "span": "all",
+          "start": 10,
+          "end": 13,
+          "explanation": "Time scope of 'all' is not stated."
+        }
+      ],
+      "suggested_rewrite": "The system shall generate a borrowing report listing every book borrowed during the selected date range.",
+      "clarifying_questions": [
+        "Who triggers report generation?",
+        "What date range applies?"
+      ],
+      "confidence": 0.88,
+      "quality_before": 72,
+      "quality_after": 96,
+      "decision": "pending",
+      "final_text": null
+    },
+    {
+      "id": "R3",
+      "original": "The librarian can export data in formats such as PDF, etc.",
+      "is_ambiguous": true,
+      "issues": [
+        {
+          "type": "open_ended",
+          "severity": "high",
+          "span": "such as PDF, etc.",
+          "start": 41,
+          "end": 58,
+          "explanation": "Open-ended list; supported formats are not enumerated."
+        },
+        {
+          "type": "undefined_term",
+          "severity": "medium",
+          "span": "data",
+          "start": 25,
+          "end": 29,
+          "explanation": "Which data is exported is not specified."
+        }
+      ],
+      "suggested_rewrite": "The system shall allow a librarian to export the borrowing report in PDF and CSV formats.",
+      "clarifying_questions": [
+        "Which formats must be supported?"
+      ],
+      "confidence": 0.9,
+      "quality_before": 45,
+      "quality_after": 97,
+      "decision": "pending",
+      "final_text": null
+    },
+    {
+      "id": "R4",
+      "original": "The system shall lock a member account after 5 consecutive failed login attempts.",
+      "is_ambiguous": false,
+      "issues": [],
+      "suggested_rewrite": null,
+      "clarifying_questions": [],
+      "confidence": 0.96,
+      "quality_before": 100,
+      "quality_after": 100,
+      "decision": "pending",
+      "final_text": null
+    }
+  ]
+}
